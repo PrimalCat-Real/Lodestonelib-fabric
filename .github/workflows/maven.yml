@@ -1,0 +1,60 @@
+name: publish
+on: workflow_dispatch
+permissions:
+  contents: read
+  packages: write
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+      - name: validate gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'microsoft'
+          
+     # - name: Make way
+      #  run: |
+        #  cd /home/runner/.m2/
+       #   mkdir repository
+       #   cd repository/
+        #  mkdir team
+      #    cd team
+         # mkdir lodestar
+    #  - name: Download artifact
+     #   id: download-artifact
+       # uses: dawidd6/action-download-artifact@v3
+     #   with:
+      #    workflow: publish.yml
+         # path: /home/runner/.m2/repository/team/lodestar/
+      - name: rename dir
+        run: |
+          cd /home/runner/.m2/repository/team/lodestar/
+          mv maven-repo lodestone
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew
+      - name: build
+        run: ./gradlew build publishToMavenLocal
+      - name: debug
+        run: |
+          cd /home/runner/.m2/repository/team/lodestar/
+          ls -a -R
+      - name: upload maven repo as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: maven-repo
+          path: /home/runner/.m2/repository/team/lodestar/lodestone
+      - name: Trigger remote maven fetch
+        run: |
+          curl -X POST 'https://api.github.com/repos/cph101/cph101-maven/dispatches' -H 'Authorization:token ${{secrets.WORKFLOW_TOKEN}}' -H 'Content-Type:application/json' -d '{
+            "event_type": "Import Project",
+            "client_payload": {
+              "project": "Lodestonelib-fabric",
+              "distributionName": "team/lodestar/lodestone"
+            }
+          }'
