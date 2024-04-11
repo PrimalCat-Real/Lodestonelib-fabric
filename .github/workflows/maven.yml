@@ -32,10 +32,10 @@ jobs:
      #   with:
       #    workflow: publish.yml
          # path: /home/runner/.m2/repository/team/lodestar/
-      - name: rename dir
-        run: |
-          cd /home/runner/.m2/repository/team/lodestar/
-          mv maven-repo lodestone
+     # - name: rename dir
+        #run: |
+         # cd /home/runner/.m2/repository/team/lodestar/
+        #  mv maven-repo lodestone
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
       - name: build
