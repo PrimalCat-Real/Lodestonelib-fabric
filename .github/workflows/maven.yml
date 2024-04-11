@@ -55,6 +55,7 @@ jobs:
             "event_type": "Import Project",
             "client_payload": {
               "project": "Lodestonelib-fabric",
-              "distributionName": "team/lodestar/lodestone"
+              "distributionName": "team/lodestar/lodestone",
+              "workflowName": "maven.yml"
             }
           }'
