@@ -3,6 +3,7 @@ package team.lodestar.lodestone.systems.rendering.particle.world;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import team.lodestar.lodestone.config.ClientConfig;
 import team.lodestar.lodestone.handlers.RenderHandler;
+import team.lodestar.lodestone.helpers.DataHelper;
 import team.lodestar.lodestone.systems.rendering.particle.LodestoneWorldParticleTextureSheet;
 import team.lodestar.lodestone.systems.rendering.particle.SimpleParticleEffect;
 import team.lodestar.lodestone.systems.rendering.particle.data.ColorParticleData;
@@ -81,7 +82,7 @@ public class GenericParticle extends SpriteBillboardParticle {
 		}
 	}
     public void pickColor(float colorCoeff) {
-        float h = MathHelper.lerpAngleDegrees(colorCoeff, 360f * hsv1[0], 360f * hsv2[0]) / 360f;
+        float h = DataHelper.lerpAngleDegrees(colorCoeff, 360f * hsv1[0], 360f * hsv2[0]) / 360f;
         float s = MathHelper.lerp(colorCoeff, hsv1[1], hsv2[1]);
         float v = MathHelper.lerp(colorCoeff, hsv1[2], hsv2[2]);
         int packed = Color.HSBtoRGB(h, s, v);

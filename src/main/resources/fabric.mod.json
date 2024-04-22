@@ -29,12 +29,10 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.15.6",
-		"minecraft": "~1.20.1",
+		"minecraft": "~1.20.4",
 		"java": ">=17",
-		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
+		"fabric-api": "*",
+		"satin": "*"
 	},
 	"accessWidener": "lodestone.accesswidener"
 }

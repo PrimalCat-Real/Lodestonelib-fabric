@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Screen.class)
 final class ScreenMixin {
-	@Inject(at = @At("HEAD"), method = "renderBackground(Lnet/minecraft/client/gui/GuiGraphics;)V")
+	@Inject(at = @At("HEAD"), method = "renderBackgroundTexture")
 	private void lodestone$beforeBackgroundParticle(GuiGraphics graphics, CallbackInfo ci) {
 		ScreenParticleHandler.renderEarliestParticles();
 	}

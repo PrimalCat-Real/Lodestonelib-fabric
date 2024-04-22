@@ -199,4 +199,8 @@ public final class DataHelper {
 	public static float distance(float... a) {
 		return sqrt(distSqr(a));
 	}
+
+	public static float lerpAngleDegrees(float delta, float start, float end) {
+		return start + delta * MathHelper.wrapDegrees(end - start);
+	}
 }
