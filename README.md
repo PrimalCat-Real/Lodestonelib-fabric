@@ -10,6 +10,9 @@ maven { url 'https://maven.cph101.com/releases' }
 ```groovy
 modImplementation 'team.lodestar.lodestone:Lodestonelib-fabric:0.0.4+1.20.1'
 ```
+### Versions
+See [cph101-maven/index.md](https://github.com/cph101/cph101-maven/blob/main/index.md#versions)
+
 ### Will you write documentation?
 Perhaps at some point.
 ### Will you backport it?
